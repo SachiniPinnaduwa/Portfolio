@@ -12,6 +12,8 @@ export const TextGenerateEffect = ({
 }) => {
   const [scope, animate] = useAnimate();
   let wordsArray = words.split(" ");
+  const targetWords = ["Full-Stack", "Development"];
+
   useEffect(() => {
     console.log(wordsArray);
     animate(
@@ -30,11 +32,12 @@ export const TextGenerateEffect = ({
     return (
       <motion.div ref={scope}>
         {wordsArray.map((word, idx) => {
+          const isPurple = targetWords.includes(word); // Check if the word should be purple
           return (
             <motion.span
               key={word + idx}
-              className={` ${
-                idx > 3 ? "text-purple" : "dark:text-white text-black"
+              className={`${
+                isPurple ? "text-purple" : "dark:text-white text-black"
               } opacity-0`}
             >
               {word}{" "}
